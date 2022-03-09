@@ -1,4 +1,14 @@
 <?php
-$value = isset($_GET['value']) ? $_GET['value'] : '[blank]';
+$host = $_ENV["host"];
+$db_name = $_ENV["db_name"];
+$username = $_ENV["username"];
+$password = $_ENV["password"];
+// Create connection
+$conn = new mysqli($host, $username, $password, $db_name);
 
-echo 'user wrote this ' . $value;
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+  echo("Connection Failed!");
+}
+echo "Connected successfully";
